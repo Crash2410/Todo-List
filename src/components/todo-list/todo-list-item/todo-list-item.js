@@ -4,6 +4,13 @@ import './todo-list-item.css';
 
 export default class TodoListItem extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      done: false
+    };
+  }
+
   // 1-й способ не потерять this при событии
   // В событие передавать onClick={this.onLabelClick.bind(this)} 
   // 2-й способ не потерять this при событии
@@ -15,11 +22,16 @@ export default class TodoListItem extends React.Component {
   // }
   // 3-й способ не потерять this при событии
   onLabelClick = () => {
-    console.log(`${this.props.label}`)
+    this.state.done ? this.setState({ done: false }) : this.setState({ done: true });
   }
 
   render() {
     const { label, important = false } = this.props;
+    const { done } = this.state;
+
+    let classNames = 'todo-list-item';
+    done ? classNames += ' done' : classNames = 'todo-list-item';
+
 
     const style = {
       color: important ? 'steelblue' : 'black',
@@ -27,7 +39,7 @@ export default class TodoListItem extends React.Component {
     };
 
     return (
-      <span className="todo-list-item">
+      <span className={classNames}>
         <span
           className="todo-list-item-label"
           style={style}
