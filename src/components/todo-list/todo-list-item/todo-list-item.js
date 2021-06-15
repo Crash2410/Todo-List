@@ -3,9 +3,24 @@ import React from 'react';
 import './todo-list-item.css';
 
 export default class TodoListItem extends React.Component {
+
+  // 1-й способ не потерять this при событии
+  // В событие передавать onClick={this.onLabelClick.bind(this)} 
+  // 2-й способ не потерять this при событии
+  // constructor() {
+  //   super();
+  //   this.onLabelClick = () => {
+  //     console.log(`${this.props.label}`)
+  //   }
+  // }
+  // 3-й способ не потерять this при событии
+  onLabelClick = () => {
+    console.log(`${this.props.label}`)
+  }
+
   render() {
     const { label, important = false } = this.props;
-    
+
     const style = {
       color: important ? 'steelblue' : 'black',
       fontWeight: important ? 'bold' : 'normal'
@@ -15,7 +30,8 @@ export default class TodoListItem extends React.Component {
       <span className="todo-list-item">
         <span
           className="todo-list-item-label"
-          style={style}>
+          style={style}
+          onClick={this.onLabelClick}>
           {label}
         </span>
 
