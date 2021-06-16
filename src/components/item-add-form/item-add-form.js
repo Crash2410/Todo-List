@@ -2,7 +2,7 @@ import React from 'react';
 import './item-add-form.css';
 
 export default class ItemAddForm extends React.Component {
-    
+
     state = {
         label: ''
     }
@@ -16,10 +16,12 @@ export default class ItemAddForm extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.onAdd(this.state.label);
+        this.setState({
+            label: ' '
+        })
     };
 
     render() {
-        const { onAdd } = this.props;
 
         return (
             <form className="add-new-list d-flex" onSubmit={this.onSubmit}>
@@ -27,13 +29,11 @@ export default class ItemAddForm extends React.Component {
                     type="text"
                     className='form-control'
                     onChange={this.onLabelChange}
-                    placeholder='What needs to be done' />
+                    placeholder='What needs to be done'
+                    value={this.state.label} />
                 <button
-                    type="button"
                     className="btn btn-outline-secondary"
-                    onClick={() => {
-                        onAdd(this.state.label);
-                    }}>Add List</button>
+                >Add List</button>
             </form>
         );
     }
