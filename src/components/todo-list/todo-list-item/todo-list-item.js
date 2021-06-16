@@ -23,19 +23,19 @@ export default class TodoListItem extends React.Component {
   // }
   // 3-й способ не потерять this при событии
   onLabelClick = () => {
-    this.setState(({done}) => {
+    this.setState(({ done }) => {
       return { done: !done }
     });
   }
 
   onImportantClick = () => {
-    this.setState(({important}) => {
+    this.setState(({ important }) => {
       return { important: !important }
     });
   }
 
   render() {
-    const { label } = this.props;
+    const { label, onDeleted } = this.props;
     const { done, important } = this.state;
 
     let classNames = ['todo-list-item'];
@@ -62,7 +62,8 @@ export default class TodoListItem extends React.Component {
         </button>
 
         <button type="button"
-          className="btn btn-outline-danger btn-sm float-right">
+          className="btn btn-outline-danger btn-sm float-right"
+          onClick={onDeleted}>
           <i className="fa fa-trash-o" />
         </button>
       </span>
