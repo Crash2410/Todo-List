@@ -1,3 +1,7 @@
-.add-button{
-    margin-top: 10px;
-  }
+.add-new-list {
+  margin-top: 10px;
+}
+
+.add-new-list input{
+  margin-right: 5px;
+}
