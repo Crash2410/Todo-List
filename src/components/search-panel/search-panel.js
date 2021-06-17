@@ -5,7 +5,7 @@ import './search-panel.css';
 export default class SearchPanel extends React.Component {
 
   state = {
-    term: ' '
+    term: ''
   }
 
   onSearchList = (e) => {
